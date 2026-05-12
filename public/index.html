@@ -2,10 +2,336 @@
 <head>
 <meta name=generator content="Hugo 0.92.2"><meta charset=utf-8><title>Главная</title></head>
 <body>
-<h1>Главная</h1>
-<article>
-<h2><a href=https://horeca-os.website.yandexcloud.net/posts/>Posts</a></h2>
-<time>12.05.2026</time>
-</article>
+<pre><code>    #sdos-dashboard .mini-chart {
+        display: flex;
+        align-items: flex-end;
+        gap: 6px;
+        height: 50px;
+        margin-top: 12px;
+    }
+    #sdos-dashboard .bar {
+        flex: 1;
+        background: #2d4a32;
+        border-radius: 4px 4px 0 0;
+        min-height: 4px;
+    }
+    #sdos-dashboard .bar-label {
+        font-size: 10px;
+        color: #888;
+        text-align: center;
+        margin-top: 4px;
+    }
+
+    #sdos-dashboard .nps-line-chart {
+        width: 100%;
+        height: auto;
+    }
+    #sdos-dashboard .nps-line-chart .axis-line {
+        stroke: #ddd;
+        stroke-width: 1;
+    }
+    #sdos-dashboard .nps-line-chart .tick-label {
+        font-size: 8px;
+        fill: #888;
+    }
+    #sdos-dashboard .nps-line-chart .nps-path {
+        fill: none;
+        stroke: #d96c1a;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+    #sdos-dashboard .nps-line-chart .nps-point {
+        fill: #d96c1a;
+    }
+
+    #sdos-dashboard .nav-link {
+        color: #ff7b00;
+        font-weight: 700;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    #sdos-dashboard .nav-link:hover {
+        color: #e06e00;
+    }
+
+    #sdos-dashboard .staff-kpi {
+        font-size: 18px;
+        font-weight: 700;
+        color: #2d4a32;
+        margin-bottom: 10px;
+    }
+
+    #sdos-dashboard .legend-column {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+        #sdos-dashboard .card-wide {
+            grid-column: span 1;
+        }
+    }
+    @media (max-width: 600px) {
+        #sdos-dashboard h1 { font-size: 36px; }
+        #sdos-dashboard .card-value { font-size: 28px; }
+    }
+&lt;/style&gt;
+
+&lt;div class=&quot;dashboard&quot;&gt;
+    &lt;h1&gt;
+        &lt;span class=&quot;thin&quot;&gt;Сельский Дом&lt;/span&gt; &lt;span class=&quot;bold&quot;&gt;OS&lt;/span&gt;
+    &lt;/h1&gt;
+    &lt;p class=&quot;subtitle&quot;&gt;Главный экран • Данные на сегодня, 6 мая 2026&lt;/p&gt;
+
+    &lt;div class=&quot;grid&quot; id=&quot;dashboardGrid&quot;&gt;
+        &lt;!-- Блок 1: Выручка сегодня --&gt;
+        &lt;div class=&quot;card&quot; data-id=&quot;revenue&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;span class=&quot;card-title&quot;&gt;💰 Выручка сегодня&lt;/span&gt;
+                &lt;span class=&quot;badge badge-success&quot;&gt;iiko&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;card-value&quot;&gt;24 500 ₽&lt;/div&gt;
+            &lt;div class=&quot;card-label&quot;&gt;план 30 000 ₽&lt;/div&gt;
+            &lt;div class=&quot;progress-bar&quot; style=&quot;margin-top:12px;&quot;&gt;
+                &lt;div class=&quot;progress-fill&quot; style=&quot;width: 82%;&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p class=&quot;small-text&quot; style=&quot;margin-top:8px;&quot;&gt;Средний чек &lt;strong&gt;720 ₽&lt;/strong&gt; • Чеков &lt;strong&gt;34&lt;/strong&gt;&lt;/p&gt;
+            &lt;div class=&quot;mini-chart&quot;&gt;
+                &lt;div style=&quot;display:flex; flex-direction:column; align-items:center; flex:1;&quot;&gt;
+                    &lt;div class=&quot;bar&quot; style=&quot;height:30px;&quot;&gt;&lt;/div&gt;
+                    &lt;span class=&quot;bar-label&quot;&gt;вт&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div style=&quot;display:flex; flex-direction:column; align-items:center; flex:1;&quot;&gt;
+                    &lt;div class=&quot;bar&quot; style=&quot;height:38px;&quot;&gt;&lt;/div&gt;
+                    &lt;span class=&quot;bar-label&quot;&gt;ср&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div style=&quot;display:flex; flex-direction:column; align-items:center; flex:1;&quot;&gt;
+                    &lt;div class=&quot;bar&quot; style=&quot;height:45px;&quot;&gt;&lt;/div&gt;
+                    &lt;span class=&quot;bar-label&quot;&gt;чт&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div style=&quot;display:flex; flex-direction:column; align-items:center; flex:1;&quot;&gt;
+                    &lt;div class=&quot;bar&quot; style=&quot;height:42px;&quot;&gt;&lt;/div&gt;
+                    &lt;span class=&quot;bar-label&quot;&gt;пт&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div style=&quot;display:flex; flex-direction:column; align-items:center; flex:1;&quot;&gt;
+                    &lt;div class=&quot;bar&quot; style=&quot;height:40px;&quot;&gt;&lt;/div&gt;
+                    &lt;span class=&quot;bar-label&quot;&gt;сб&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div style=&quot;display:flex; flex-direction:column; align-items:center; flex:1;&quot;&gt;
+                    &lt;div class=&quot;bar&quot; style=&quot;height:48px;&quot;&gt;&lt;/div&gt;
+                    &lt;span class=&quot;bar-label&quot;&gt;вс&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div style=&quot;display:flex; flex-direction:column; align-items:center; flex:1;&quot;&gt;
+                    &lt;div class=&quot;bar&quot; style=&quot;height:44px;&quot;&gt;&lt;/div&gt;
+                    &lt;span class=&quot;bar-label&quot;&gt;пн&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p class=&quot;small-text&quot; style=&quot;margin-top:8px;&quot;&gt;&lt;a href=&quot;#finance&quot; class=&quot;nav-link&quot;&gt;Детализация по дням →&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Блок 2: Себестоимость продуктов (двойной) --&gt;
+        &lt;div class=&quot;card card-wide&quot; data-id=&quot;foodcost&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;span class=&quot;card-title&quot;&gt;🥬 Себестоимость продуктов&lt;/span&gt;
+                &lt;span class=&quot;badge badge-warning&quot;&gt;Выше цели&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div style=&quot;display: flex; gap: 20px; flex-wrap: wrap; align-items: center;&quot;&gt;
+                &lt;div style=&quot;flex: 1; min-width: 200px;&quot;&gt;
+                    &lt;div class=&quot;card-value&quot;&gt;30%&lt;/div&gt;
+                    &lt;div class=&quot;card-label&quot;&gt;цель ≤ 27%&lt;/div&gt;
+                    &lt;div class=&quot;progress-bar&quot; style=&quot;margin-top:12px;&quot;&gt;
+                        &lt;div class=&quot;progress-fill warning&quot; style=&quot;width: 30%;&quot;&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;p class=&quot;small-text&quot; style=&quot;margin-top:8px;&quot;&gt;Маржинальность &lt;strong&gt;70%&lt;/strong&gt; • Отклонение +3 п.п. от цели&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div style=&quot;flex: 1; min-width: 200px; text-align: center;&quot;&gt;
+                    &lt;p class=&quot;small-text&quot; style=&quot;margin-bottom: 8px;&quot;&gt;Состав себестоимости&lt;/p&gt;
+                    &lt;svg viewBox=&quot;0 0 100 100&quot; width=&quot;120&quot; height=&quot;120&quot;&gt;
+                        &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;40&quot; fill=&quot;transparent&quot; stroke=&quot;#2ecc71&quot; stroke-width=&quot;20&quot;
+                            stroke-dasharray=&quot;175.93 251.33&quot; stroke-dashoffset=&quot;0&quot; transform=&quot;rotate(-90 50 50)&quot;/&gt;
+                        &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;40&quot; fill=&quot;transparent&quot; stroke=&quot;#2d4a32&quot; stroke-width=&quot;20&quot;
+                            stroke-dasharray=&quot;50.27 251.33&quot; stroke-dashoffset=&quot;-175.93&quot; transform=&quot;rotate(-90 50 50)&quot;/&gt;
+                        &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;40&quot; fill=&quot;transparent&quot; stroke=&quot;#ffa147&quot; stroke-width=&quot;20&quot;
+                            stroke-dasharray=&quot;25.13 251.33&quot; stroke-dashoffset=&quot;-226.19&quot; transform=&quot;rotate(-90 50 50)&quot;/&gt;
+                    &lt;/svg&gt;
+                    &lt;div class=&quot;legend-column&quot;&gt;
+                        &lt;div&gt;&lt;span style=&quot;color:#2ecc71;&quot;&gt;●&lt;/span&gt; Фабрика-кухня 70%&lt;/div&gt;
+                        &lt;div&gt;&lt;span style=&quot;color:#2d4a32;&quot;&gt;●&lt;/span&gt; Перекрёсток 20%&lt;/div&gt;
+                        &lt;div&gt;&lt;span style=&quot;color:#ffa147;&quot;&gt;●&lt;/span&gt; Вода и напитки 10%&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p class=&quot;small-text&quot; style=&quot;margin-top:8px;&quot;&gt;&lt;a href=&quot;#foodcost&quot; class=&quot;nav-link&quot;&gt;Аналитика по блюдам →&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Блок 3: Выполнение задач --&gt;
+        &lt;div class=&quot;card&quot; data-id=&quot;compliance&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;span class=&quot;card-title&quot;&gt;✅ Выполнение задач&lt;/span&gt;
+                &lt;span class=&quot;badge badge-success&quot;&gt;95%&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;card-value&quot;&gt;19 / 20&lt;/div&gt;
+            &lt;div class=&quot;card-label&quot;&gt;регулярных задач выполнено сегодня&lt;/div&gt;
+            &lt;div class=&quot;progress-bar&quot; style=&quot;margin-top:12px;&quot;&gt;
+                &lt;div class=&quot;progress-fill&quot; style=&quot;width: 95%;&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p class=&quot;small-text&quot; style=&quot;margin-top:8px;&quot;&gt;&lt;span class=&quot;highlight&quot;&gt;1 задача&lt;/span&gt; просрочена (см. &lt;a href=&quot;#tasks&quot; class=&quot;nav-link&quot;&gt;инциденты →&lt;/a&gt;)&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Блок 4: Отзывы за неделю (двойной) --&gt;
+        &lt;div class=&quot;card card-wide&quot; data-id=&quot;reviews&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;span class=&quot;card-title&quot;&gt;💬 Отзывы за неделю&lt;/span&gt;
+                &lt;span class=&quot;badge badge-success&quot;&gt;NPS 72&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div style=&quot;display: flex; gap: 20px; flex-wrap: wrap;&quot;&gt;
+                &lt;div style=&quot;flex: 1; min-width: 200px;&quot;&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;⭐ 5 · «Вкуснейший тыквенный суп!» — Google&lt;/li&gt;
+                        &lt;li&gt;⭐ 5 · «Очень приветливый персонал, все расскажут о здоровом питании» — Яндекс&lt;/li&gt;
+                        &lt;li&gt;⭐ 5 · «Завтрак на все 100! Милые, приветливые владельцы кафе. Приемлемые цены» — Plasmo.pro&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;p class=&quot;small-text&quot; style=&quot;margin-top:8px;&quot;&gt;&lt;a href=&quot;#reviews&quot; class=&quot;nav-link&quot;&gt;Всего 12 отзывов · средняя оценка 4.6 →&lt;/a&gt;&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div style=&quot;flex: 1; min-width: 200px;&quot;&gt;
+                    &lt;p class=&quot;small-text&quot; style=&quot;margin-bottom: 8px;&quot;&gt;Динамика NPS за месяц&lt;/p&gt;
+                    &lt;svg class=&quot;nps-line-chart&quot; viewBox=&quot;0 0 300 100&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;
+                        &lt;line x1=&quot;30&quot; y1=&quot;20&quot; x2=&quot;290&quot; y2=&quot;20&quot; class=&quot;axis-line&quot; /&gt;
+                        &lt;line x1=&quot;30&quot; y1=&quot;45&quot; x2=&quot;290&quot; y2=&quot;45&quot; class=&quot;axis-line&quot; /&gt;
+                        &lt;line x1=&quot;30&quot; y1=&quot;70&quot; x2=&quot;290&quot; y2=&quot;70&quot; class=&quot;axis-line&quot; /&gt;
+                        &lt;text x=&quot;25&quot; y=&quot;24&quot; class=&quot;tick-label&quot; text-anchor=&quot;end&quot;&gt;90&lt;/text&gt;
+                        &lt;text x=&quot;25&quot; y=&quot;49&quot; class=&quot;tick-label&quot; text-anchor=&quot;end&quot;&gt;70&lt;/text&gt;
+                        &lt;text x=&quot;25&quot; y=&quot;74&quot; class=&quot;tick-label&quot; text-anchor=&quot;end&quot;&gt;50&lt;/text&gt;
+                        &lt;text x=&quot;40&quot; y=&quot;92&quot; class=&quot;tick-label&quot; text-anchor=&quot;middle&quot;&gt;1 апр&lt;/text&gt;
+                        &lt;text x=&quot;150&quot; y=&quot;92&quot; class=&quot;tick-label&quot; text-anchor=&quot;middle&quot;&gt;15 апр&lt;/text&gt;
+                        &lt;text x=&quot;260&quot; y=&quot;92&quot; class=&quot;tick-label&quot; text-anchor=&quot;middle&quot;&gt;1 мая&lt;/text&gt;
+                        &lt;polyline class=&quot;nps-path&quot; points=&quot;40,78 70,74 100,70 130,66 160,60 190,54 220,48 250,43 280,38&quot; /&gt;
+                        &lt;circle cx=&quot;40&quot; cy=&quot;78&quot; r=&quot;2.5&quot; class=&quot;nps-point&quot; /&gt;
+                        &lt;circle cx=&quot;70&quot; cy=&quot;74&quot; r=&quot;2.5&quot; class=&quot;nps-point&quot; /&gt;
+                        &lt;circle cx=&quot;100&quot; cy=&quot;70&quot; r=&quot;2.5&quot; class=&quot;nps-point&quot; /&gt;
+                        &lt;circle cx=&quot;130&quot; cy=&quot;66&quot; r=&quot;2.5&quot; class=&quot;nps-point&quot; /&gt;
+                        &lt;circle cx=&quot;160&quot; cy=&quot;60&quot; r=&quot;2.5&quot; class=&quot;nps-point&quot; /&gt;
+                        &lt;circle cx=&quot;190&quot; cy=&quot;54&quot; r=&quot;2.5&quot; class=&quot;nps-point&quot; /&gt;
+                        &lt;circle cx=&quot;220&quot; cy=&quot;48&quot; r=&quot;2.5&quot; class=&quot;nps-point&quot; /&gt;
+                        &lt;circle cx=&quot;250&quot; cy=&quot;43&quot; r=&quot;2.5&quot; class=&quot;nps-point&quot; /&gt;
+                        &lt;circle cx=&quot;280&quot; cy=&quot;38&quot; r=&quot;2.5&quot; class=&quot;nps-point&quot; /&gt;
+                    &lt;/svg&gt;
+                    &lt;p class=&quot;small-text&quot; style=&quot;margin-top: 4px;&quot;&gt;Рост с 58 до 82 пунктов&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Блок 5: Сегодня в смене (двойной) --&gt;
+        &lt;div class=&quot;card card-wide&quot; data-id=&quot;shift&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;span class=&quot;card-title&quot;&gt;👥 Сегодня в смене&lt;/span&gt;
+                &lt;span class=&quot;badge badge-success&quot;&gt;Чек-листы ОК&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div style=&quot;display: flex; gap: 20px; flex-wrap: wrap;&quot;&gt;
+                &lt;div style=&quot;flex: 1; min-width: 200px;&quot;&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;✅ Габриела Костин&lt;/li&gt;
+                        &lt;li&gt;✅ Виктория Сеитмуратова&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;p class=&quot;small-text&quot; style=&quot;margin-top:8px;&quot;&gt;Открытие смены: &lt;strong&gt;выполнено ✓&lt;/strong&gt;&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div style=&quot;flex: 1; min-width: 200px;&quot;&gt;
+                    &lt;div class=&quot;staff-kpi&quot;&gt;⏱ Среднее время приготовления заказа&lt;/div&gt;
+                    &lt;div class=&quot;card-value&quot; style=&quot;font-size: 36px;&quot;&gt;12 мин&lt;/div&gt;
+                    &lt;div class=&quot;card-label&quot;&gt;за текущую смену&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p class=&quot;small-text&quot; style=&quot;margin-top:8px;&quot;&gt;&lt;a href=&quot;#staff&quot; class=&quot;nav-link&quot;&gt;График и чек-листы →&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Блок 6: Просроченные задачи --&gt;
+        &lt;div class=&quot;card&quot; data-id=&quot;overdue&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;span class=&quot;card-title&quot;&gt;⚠️ Просроченные задачи&lt;/span&gt;
+                &lt;span class=&quot;badge badge-warning&quot;&gt;1&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    &lt;span class=&quot;alert-dot danger&quot;&gt;&lt;/span&gt;
+                    &lt;strong&gt;Показания счётчиков&lt;/strong&gt;&lt;br&gt;
+                    &lt;span class=&quot;small-text&quot;&gt;Ответственный: Анна • Просрочено 2 ч&lt;/span&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class=&quot;small-text&quot; style=&quot;margin-top:8px;&quot;&gt;&lt;a href=&quot;#tasks&quot; class=&quot;nav-link&quot;&gt;Все просрочки →&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Блок 7: Инциденты --&gt;
+        &lt;div class=&quot;card&quot; data-id=&quot;incidents&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;span class=&quot;card-title&quot;&gt;🚨 Инциденты за неделю&lt;/span&gt;
+                &lt;span class=&quot;badge badge-danger&quot;&gt;2&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Холодильник №2: температура +8°C (норма до +4°C)&lt;/li&gt;
+                &lt;li&gt;Просроченная задача: показания счётчиков&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class=&quot;small-text&quot; style=&quot;margin-top:8px;&quot;&gt;&lt;a href=&quot;#incidents&quot; class=&quot;nav-link&quot;&gt;Журнал инцидентов →&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Блок 8: Ключевые события --&gt;
+        &lt;div class=&quot;card&quot; data-id=&quot;events&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;span class=&quot;card-title&quot;&gt;📅 Ключевые события&lt;/span&gt;
+                &lt;span class=&quot;badge badge-warning&quot;&gt;3 в ближайшие 14 дн.&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;ul&gt;
+                &lt;li&gt;ТО холодильного оборудования — через 5 дней&lt;/li&gt;
+                &lt;li&gt;Медкнижка Виктории — до 20 мая&lt;/li&gt;
+                &lt;li&gt;Поверка счётчиков — 1 июня&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class=&quot;small-text&quot; style=&quot;margin-top:8px;&quot;&gt;&lt;a href=&quot;#calendar&quot; class=&quot;nav-link&quot;&gt;Календарь событий →&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Блок 9: Остатки и поставки --&gt;
+        &lt;div class=&quot;card&quot; data-id=&quot;supply&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;span class=&quot;card-title&quot;&gt;📦 Остатки и поставки&lt;/span&gt;
+                &lt;span class=&quot;badge badge-warning&quot;&gt;iiko&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;strong&gt;Фабрика-кухня Васюково&lt;/strong&gt; — сегодня&lt;/li&gt;
+                &lt;li&gt;&lt;strong&gt;Перекрёсток&lt;/strong&gt; — 8 мая&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class=&quot;small-text&quot; style=&quot;margin-top:8px;&quot;&gt;&lt;a href=&quot;#warehouse&quot; class=&quot;nav-link&quot;&gt;Все поставки и автозаказ →&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    (function() {
+        var grid = document.getElementById('dashboardGrid');
+        if (grid) {
+            new Sortable(grid, {
+                animation: 200,
+                ghostClass: 'sortable-ghost',
+                draggable: '.card',
+                handle: '.card',
+                onStart: function(evt) {
+                    evt.item.style.cursor = 'grabbing';
+                },
+                onEnd: function(evt) {
+                    evt.item.style.cursor = 'grab';
+                }
+            });
+        }
+    })();
+&lt;/script&gt;
+
+&lt;style&gt;
+    .sortable-ghost {
+        opacity: 0.4;
+        background: #fff3e6;
+    }
+&lt;/style&gt;
+</code></pre>
 </body>
 </html>

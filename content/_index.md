@@ -1,4 +1,458 @@
 ---
 title: "Главная"
 ---
-Привет, мир! Это мой новый сайт на Hugo.
+
+<div id="sdos-dashboard">
+    <style>
+        #sdos-dashboard * { margin: 0; padding: 0; box-sizing: border-box; }
+        #sdos-dashboard {
+            font-family: 'Helvetica Neue', 'Arial', sans-serif;
+            background: #ffa147;
+            color: #1a1a1a;
+            line-height: 1.4;
+            padding: 20px;
+            border-radius: 16px;
+        }
+        #sdos-dashboard .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        #sdos-dashboard h1 {
+            font-size: 48px;
+            color: #2d4a32;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #sdos-dashboard h1 .thin {
+            font-weight: 300;
+        }
+        #sdos-dashboard h1 .bold {
+            font-weight: 900;
+        }
+        #sdos-dashboard .subtitle {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        #sdos-dashboard .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        #sdos-dashboard .card {
+            background: #f9f9f7;
+            border-radius: 32px;
+            padding: 20px;
+            border: 10px solid #ffffff;
+            box-shadow: 0 0 0 1px #d8d8d6, inset 0 0 0 1px #d8d8d6, 0 4px 12px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+            cursor: grab;
+        }
+        #sdos-dashboard .card:active {
+            cursor: grabbing;
+        }
+        #sdos-dashboard .card:hover {
+            box-shadow: 0 0 0 1px #d8d8d6, inset 0 0 0 1px #d8d8d6, 0 8px 24px rgba(0,0,0,0.06);
+        }
+        #sdos-dashboard .card-wide {
+            grid-column: span 2;
+        }
+        #sdos-dashboard .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        #sdos-dashboard .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d4a32;
+        }
+        #sdos-dashboard .card-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2d2d2d;
+            margin-bottom: 8px;
+        }
+        #sdos-dashboard .card-label {
+            font-size: 14px;
+            color: #777;
+        }
+        #sdos-dashboard .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        #sdos-dashboard .badge-success { background: #eaf4e5; color: #2d4a32; }
+        #sdos-dashboard .badge-warning { background: #fff3e6; color: #d96c1a; }
+        #sdos-dashboard .badge-danger { background: #ffe8e8; color: #c0392b; }
+        #sdos-dashboard .highlight {
+            color: #d96c1a;
+            font-weight: 600;
+        }
+        #sdos-dashboard .progress-bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        #sdos-dashboard .progress-fill {
+            height: 100%;
+            background: #2ecc71;
+            border-radius: 4px;
+        }
+        #sdos-dashboard .progress-fill.warning { background: #d96c1a; }
+        #sdos-dashboard .progress-fill.danger { background: #c0392b; }
+        #sdos-dashboard .small-text { font-size: 14px; color: #555; }
+        #sdos-dashboard ul { list-style: none; padding: 0; }
+        #sdos-dashboard li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0ebe0;
+            font-size: 15px;
+        }
+        #sdos-dashboard li:last-child { border-bottom: none; }
+        #sdos-dashboard .alert-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        #sdos-dashboard .alert-dot.warning { background: #d96c1a; }
+        #sdos-dashboard .alert-dot.danger { background: #c0392b; }
+
+        #sdos-dashboard .mini-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            height: 50px;
+            margin-top: 12px;
+        }
+        #sdos-dashboard .bar {
+            flex: 1;
+            background: #2d4a32;
+            border-radius: 4px 4px 0 0;
+            min-height: 4px;
+        }
+        #sdos-dashboard .bar-label {
+            font-size: 10px;
+            color: #888;
+            text-align: center;
+            margin-top: 4px;
+        }
+
+        #sdos-dashboard .nps-line-chart {
+            width: 100%;
+            height: auto;
+        }
+        #sdos-dashboard .nps-line-chart .axis-line {
+            stroke: #ddd;
+            stroke-width: 1;
+        }
+        #sdos-dashboard .nps-line-chart .tick-label {
+            font-size: 8px;
+            fill: #888;
+        }
+        #sdos-dashboard .nps-line-chart .nps-path {
+            fill: none;
+            stroke: #d96c1a;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        #sdos-dashboard .nps-line-chart .nps-point {
+            fill: #d96c1a;
+        }
+
+        #sdos-dashboard .nav-link {
+            color: #ff7b00;
+            font-weight: 700;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        #sdos-dashboard .nav-link:hover {
+            color: #e06e00;
+        }
+
+        #sdos-dashboard .staff-kpi {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2d4a32;
+            margin-bottom: 10px;
+        }
+
+        #sdos-dashboard .legend-column {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            #sdos-dashboard .card-wide {
+                grid-column: span 1;
+            }
+        }
+        @media (max-width: 600px) {
+            #sdos-dashboard h1 { font-size: 36px; }
+            #sdos-dashboard .card-value { font-size: 28px; }
+        }
+    </style>
+
+    <div class="dashboard">
+        <h1>
+            <span class="thin">Сельский Дом</span> <span class="bold">OS</span>
+        </h1>
+        <p class="subtitle">Главный экран • Данные на сегодня, 6 мая 2026</p>
+
+        <div class="grid" id="dashboardGrid">
+            <!-- Блок 1: Выручка сегодня -->
+            <div class="card" data-id="revenue">
+                <div class="card-header">
+                    <span class="card-title">💰 Выручка сегодня</span>
+                    <span class="badge badge-success">iiko</span>
+                </div>
+                <div class="card-value">24 500 ₽</div>
+                <div class="card-label">план 30 000 ₽</div>
+                <div class="progress-bar" style="margin-top:12px;">
+                    <div class="progress-fill" style="width: 82%;"></div>
+                </div>
+                <p class="small-text" style="margin-top:8px;">Средний чек <strong>720 ₽</strong> • Чеков <strong>34</strong></p>
+                <div class="mini-chart">
+                    <div style="display:flex; flex-direction:column; align-items:center; flex:1;">
+                        <div class="bar" style="height:30px;"></div>
+                        <span class="bar-label">вт</span>
+                    </div>
+                    <div style="display:flex; flex-direction:column; align-items:center; flex:1;">
+                        <div class="bar" style="height:38px;"></div>
+                        <span class="bar-label">ср</span>
+                    </div>
+                    <div style="display:flex; flex-direction:column; align-items:center; flex:1;">
+                        <div class="bar" style="height:45px;"></div>
+                        <span class="bar-label">чт</span>
+                    </div>
+                    <div style="display:flex; flex-direction:column; align-items:center; flex:1;">
+                        <div class="bar" style="height:42px;"></div>
+                        <span class="bar-label">пт</span>
+                    </div>
+                    <div style="display:flex; flex-direction:column; align-items:center; flex:1;">
+                        <div class="bar" style="height:40px;"></div>
+                        <span class="bar-label">сб</span>
+                    </div>
+                    <div style="display:flex; flex-direction:column; align-items:center; flex:1;">
+                        <div class="bar" style="height:48px;"></div>
+                        <span class="bar-label">вс</span>
+                    </div>
+                    <div style="display:flex; flex-direction:column; align-items:center; flex:1;">
+                        <div class="bar" style="height:44px;"></div>
+                        <span class="bar-label">пн</span>
+                    </div>
+                </div>
+                <p class="small-text" style="margin-top:8px;"><a href="#finance" class="nav-link">Детализация по дням →</a></p>
+            </div>
+
+            <!-- Блок 2: Себестоимость продуктов (двойной) -->
+            <div class="card card-wide" data-id="foodcost">
+                <div class="card-header">
+                    <span class="card-title">🥬 Себестоимость продуктов</span>
+                    <span class="badge badge-warning">Выше цели</span>
+                </div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <div class="card-value">30%</div>
+                        <div class="card-label">цель ≤ 27%</div>
+                        <div class="progress-bar" style="margin-top:12px;">
+                            <div class="progress-fill warning" style="width: 30%;"></div>
+                        </div>
+                        <p class="small-text" style="margin-top:8px;">Маржинальность <strong>70%</strong> • Отклонение +3 п.п. от цели</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; text-align: center;">
+                        <p class="small-text" style="margin-bottom: 8px;">Состав себестоимости</p>
+                        <svg viewBox="0 0 100 100" width="120" height="120">
+                            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#2ecc71" stroke-width="20"
+                                stroke-dasharray="175.93 251.33" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+                            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#2d4a32" stroke-width="20"
+                                stroke-dasharray="50.27 251.33" stroke-dashoffset="-175.93" transform="rotate(-90 50 50)"/>
+                            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#ffa147" stroke-width="20"
+                                stroke-dasharray="25.13 251.33" stroke-dashoffset="-226.19" transform="rotate(-90 50 50)"/>
+                        </svg>
+                        <div class="legend-column">
+                            <div><span style="color:#2ecc71;">●</span> Фабрика-кухня 70%</div>
+                            <div><span style="color:#2d4a32;">●</span> Перекрёсток 20%</div>
+                            <div><span style="color:#ffa147;">●</span> Вода и напитки 10%</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="small-text" style="margin-top:8px;"><a href="#foodcost" class="nav-link">Аналитика по блюдам →</a></p>
+            </div>
+
+            <!-- Блок 3: Выполнение задач -->
+            <div class="card" data-id="compliance">
+                <div class="card-header">
+                    <span class="card-title">✅ Выполнение задач</span>
+                    <span class="badge badge-success">95%</span>
+                </div>
+                <div class="card-value">19 / 20</div>
+                <div class="card-label">регулярных задач выполнено сегодня</div>
+                <div class="progress-bar" style="margin-top:12px;">
+                    <div class="progress-fill" style="width: 95%;"></div>
+                </div>
+                <p class="small-text" style="margin-top:8px;"><span class="highlight">1 задача</span> просрочена (см. <a href="#tasks" class="nav-link">инциденты →</a>)</p>
+            </div>
+
+            <!-- Блок 4: Отзывы за неделю (двойной) -->
+            <div class="card card-wide" data-id="reviews">
+                <div class="card-header">
+                    <span class="card-title">💬 Отзывы за неделю</span>
+                    <span class="badge badge-success">NPS 72</span>
+                </div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <ul>
+                            <li>⭐ 5 · «Вкуснейший тыквенный суп!» — Google</li>
+                            <li>⭐ 5 · «Очень приветливый персонал, все расскажут о здоровом питании» — Яндекс</li>
+                            <li>⭐ 5 · «Завтрак на все 100! Милые, приветливые владельцы кафе. Приемлемые цены» — Plasmo.pro</li>
+                        </ul>
+                        <p class="small-text" style="margin-top:8px;"><a href="#reviews" class="nav-link">Всего 12 отзывов · средняя оценка 4.6 →</a></p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <p class="small-text" style="margin-bottom: 8px;">Динамика NPS за месяц</p>
+                        <svg class="nps-line-chart" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid meet">
+                            <line x1="30" y1="20" x2="290" y2="20" class="axis-line" />
+                            <line x1="30" y1="45" x2="290" y2="45" class="axis-line" />
+                            <line x1="30" y1="70" x2="290" y2="70" class="axis-line" />
+                            <text x="25" y="24" class="tick-label" text-anchor="end">90</text>
+                            <text x="25" y="49" class="tick-label" text-anchor="end">70</text>
+                            <text x="25" y="74" class="tick-label" text-anchor="end">50</text>
+                            <text x="40" y="92" class="tick-label" text-anchor="middle">1 апр</text>
+                            <text x="150" y="92" class="tick-label" text-anchor="middle">15 апр</text>
+                            <text x="260" y="92" class="tick-label" text-anchor="middle">1 мая</text>
+                            <polyline class="nps-path" points="40,78 70,74 100,70 130,66 160,60 190,54 220,48 250,43 280,38" />
+                            <circle cx="40" cy="78" r="2.5" class="nps-point" />
+                            <circle cx="70" cy="74" r="2.5" class="nps-point" />
+                            <circle cx="100" cy="70" r="2.5" class="nps-point" />
+                            <circle cx="130" cy="66" r="2.5" class="nps-point" />
+                            <circle cx="160" cy="60" r="2.5" class="nps-point" />
+                            <circle cx="190" cy="54" r="2.5" class="nps-point" />
+                            <circle cx="220" cy="48" r="2.5" class="nps-point" />
+                            <circle cx="250" cy="43" r="2.5" class="nps-point" />
+                            <circle cx="280" cy="38" r="2.5" class="nps-point" />
+                        </svg>
+                        <p class="small-text" style="margin-top: 4px;">Рост с 58 до 82 пунктов</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок 5: Сегодня в смене (двойной) -->
+            <div class="card card-wide" data-id="shift">
+                <div class="card-header">
+                    <span class="card-title">👥 Сегодня в смене</span>
+                    <span class="badge badge-success">Чек-листы ОК</span>
+                </div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <ul>
+                            <li>✅ Габриела Костин</li>
+                            <li>✅ Виктория Сеитмуратова</li>
+                        </ul>
+                        <p class="small-text" style="margin-top:8px;">Открытие смены: <strong>выполнено ✓</strong></p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <div class="staff-kpi">⏱ Среднее время приготовления заказа</div>
+                        <div class="card-value" style="font-size: 36px;">12 мин</div>
+                        <div class="card-label">за текущую смену</div>
+                    </div>
+                </div>
+                <p class="small-text" style="margin-top:8px;"><a href="#staff" class="nav-link">График и чек-листы →</a></p>
+            </div>
+
+            <!-- Блок 6: Просроченные задачи -->
+            <div class="card" data-id="overdue">
+                <div class="card-header">
+                    <span class="card-title">⚠️ Просроченные задачи</span>
+                    <span class="badge badge-warning">1</span>
+                </div>
+                <ul>
+                    <li>
+                        <span class="alert-dot danger"></span>
+                        <strong>Показания счётчиков</strong><br>
+                        <span class="small-text">Ответственный: Анна • Просрочено 2 ч</span>
+                    </li>
+                </ul>
+                <p class="small-text" style="margin-top:8px;"><a href="#tasks" class="nav-link">Все просрочки →</a></p>
+            </div>
+
+            <!-- Блок 7: Инциденты -->
+            <div class="card" data-id="incidents">
+                <div class="card-header">
+                    <span class="card-title">🚨 Инциденты за неделю</span>
+                    <span class="badge badge-danger">2</span>
+                </div>
+                <ul>
+                    <li>Холодильник №2: температура +8°C (норма до +4°C)</li>
+                    <li>Просроченная задача: показания счётчиков</li>
+                </ul>
+                <p class="small-text" style="margin-top:8px;"><a href="#incidents" class="nav-link">Журнал инцидентов →</a></p>
+            </div>
+
+            <!-- Блок 8: Ключевые события -->
+            <div class="card" data-id="events">
+                <div class="card-header">
+                    <span class="card-title">📅 Ключевые события</span>
+                    <span class="badge badge-warning">3 в ближайшие 14 дн.</span>
+                </div>
+                <ul>
+                    <li>ТО холодильного оборудования — через 5 дней</li>
+                    <li>Медкнижка Виктории — до 20 мая</li>
+                    <li>Поверка счётчиков — 1 июня</li>
+                </ul>
+                <p class="small-text" style="margin-top:8px;"><a href="#calendar" class="nav-link">Календарь событий →</a></p>
+            </div>
+
+            <!-- Блок 9: Остатки и поставки -->
+            <div class="card" data-id="supply">
+                <div class="card-header">
+                    <span class="card-title">📦 Остатки и поставки</span>
+                    <span class="badge badge-warning">iiko</span>
+                </div>
+                <ul>
+                    <li><strong>Фабрика-кухня Васюково</strong> — сегодня</li>
+                    <li><strong>Перекрёсток</strong> — 8 мая</li>
+                </ul>
+                <p class="small-text" style="margin-top:8px;"><a href="#warehouse" class="nav-link">Все поставки и автозаказ →</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script>
+        (function() {
+            var grid = document.getElementById('dashboardGrid');
+            if (grid) {
+                new Sortable(grid, {
+                    animation: 200,
+                    ghostClass: 'sortable-ghost',
+                    draggable: '.card',
+                    handle: '.card',
+                    onStart: function(evt) {
+                        evt.item.style.cursor = 'grabbing';
+                    },
+                    onEnd: function(evt) {
+                        evt.item.style.cursor = 'grab';
+                    }
+                });
+            }
+        })();
+    </script>
+
+    <style>
+        .sortable-ghost {
+            opacity: 0.4;
+            background: #fff3e6;
+        }
+    </style>
+</div>
