@@ -1,5 +1,5 @@
 ---
-title: "Главная"
+title: "Сельский Дом OS"
 ---
 
 <div id="sdos-dashboard">
@@ -47,10 +47,8 @@ title: "Главная"
             border: 10px solid #ffffff;
             box-shadow: 0 0 0 1px #d8d8d6, inset 0 0 0 1px #d8d8d6, 0 4px 12px rgba(0,0,0,0.03);
             transition: all 0.2s ease;
-            cursor: grab;
-        }
-        #sdos-dashboard .card:active {
-            cursor: grabbing;
+            position: relative;
+            cursor: default;               /* обычный курсор */
         }
         #sdos-dashboard .card:hover {
             box-shadow: 0 0 0 1px #d8d8d6, inset 0 0 0 1px #d8d8d6, 0 8px 24px rgba(0,0,0,0.06);
@@ -63,6 +61,7 @@ title: "Главная"
             justify-content: space-between;
             align-items: center;
             margin-bottom: 12px;
+            padding-right: 30px;           /* место для ручки */
         }
         #sdos-dashboard .card-title {
             font-size: 18px;
@@ -192,6 +191,28 @@ title: "Главная"
             margin-top: 10px;
         }
 
+        /* Ручка перетаскивания */
+        #sdos-dashboard .drag-handle {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            cursor: grab;
+            font-size: 18px;
+            color: #aaa;
+            line-height: 1;
+            padding: 4px 6px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            z-index: 2;
+        }
+        #sdos-dashboard .drag-handle:active {
+            cursor: grabbing;
+        }
+        #sdos-dashboard .drag-handle:hover {
+            background: #eee;
+            color: #555;
+        }
+
         @media (max-width: 768px) {
             #sdos-dashboard .card-wide {
                 grid-column: span 1;
@@ -200,6 +221,16 @@ title: "Главная"
         @media (max-width: 600px) {
             #sdos-dashboard h1 { font-size: 36px; }
             #sdos-dashboard .card-value { font-size: 28px; }
+            #sdos-dashboard .drag-handle {
+                top: 8px;
+                right: 8px;
+                font-size: 16px;
+            }
+        }
+
+        .sortable-ghost {
+            opacity: 0.4;
+            background: #fff3e6;
         }
     </style>
 
@@ -212,6 +243,7 @@ title: "Главная"
         <div class="grid" id="dashboardGrid">
             <!-- Блок 1: Выручка сегодня -->
             <div class="card" data-id="revenue">
+                <div class="drag-handle" title="Переместить">⋮</div>
                 <div class="card-header">
                     <span class="card-title">💰 Выручка сегодня</span>
                     <span class="badge badge-success">iiko</span>
@@ -257,6 +289,7 @@ title: "Главная"
 
             <!-- Блок 2: Себестоимость продуктов (двойной) -->
             <div class="card card-wide" data-id="foodcost">
+                <div class="drag-handle" title="Переместить">⋮</div>
                 <div class="card-header">
                     <span class="card-title">🥬 Себестоимость продуктов</span>
                     <span class="badge badge-warning">Выше цели</span>
@@ -292,6 +325,7 @@ title: "Главная"
 
             <!-- Блок 3: Выполнение задач -->
             <div class="card" data-id="compliance">
+                <div class="drag-handle" title="Переместить">⋮</div>
                 <div class="card-header">
                     <span class="card-title">✅ Выполнение задач</span>
                     <span class="badge badge-success">95%</span>
@@ -306,6 +340,7 @@ title: "Главная"
 
             <!-- Блок 4: Отзывы за неделю (двойной) -->
             <div class="card card-wide" data-id="reviews">
+                <div class="drag-handle" title="Переместить">⋮</div>
                 <div class="card-header">
                     <span class="card-title">💬 Отзывы за неделю</span>
                     <span class="badge badge-success">NPS 72</span>
@@ -349,6 +384,7 @@ title: "Главная"
 
             <!-- Блок 5: Сегодня в смене (двойной) -->
             <div class="card card-wide" data-id="shift">
+                <div class="drag-handle" title="Переместить">⋮</div>
                 <div class="card-header">
                     <span class="card-title">👥 Сегодня в смене</span>
                     <span class="badge badge-success">Чек-листы ОК</span>
@@ -372,6 +408,7 @@ title: "Главная"
 
             <!-- Блок 6: Просроченные задачи -->
             <div class="card" data-id="overdue">
+                <div class="drag-handle" title="Переместить">⋮</div>
                 <div class="card-header">
                     <span class="card-title">⚠️ Просроченные задачи</span>
                     <span class="badge badge-warning">1</span>
@@ -388,6 +425,7 @@ title: "Главная"
 
             <!-- Блок 7: Инциденты -->
             <div class="card" data-id="incidents">
+                <div class="drag-handle" title="Переместить">⋮</div>
                 <div class="card-header">
                     <span class="card-title">🚨 Инциденты за неделю</span>
                     <span class="badge badge-danger">2</span>
@@ -401,6 +439,7 @@ title: "Главная"
 
             <!-- Блок 8: Ключевые события -->
             <div class="card" data-id="events">
+                <div class="drag-handle" title="Переместить">⋮</div>
                 <div class="card-header">
                     <span class="card-title">📅 Ключевые события</span>
                     <span class="badge badge-warning">3 в ближайшие 14 дн.</span>
@@ -415,6 +454,7 @@ title: "Главная"
 
             <!-- Блок 9: Остатки и поставки -->
             <div class="card" data-id="supply">
+                <div class="drag-handle" title="Переместить">⋮</div>
                 <div class="card-header">
                     <span class="card-title">📦 Остатки и поставки</span>
                     <span class="badge badge-warning">iiko</span>
@@ -436,23 +476,15 @@ title: "Главная"
                 new Sortable(grid, {
                     animation: 200,
                     ghostClass: 'sortable-ghost',
-                    draggable: '.card',
-                    handle: '.card',
+                    handle: '.drag-handle',    // перетаскивание только за ручку
                     onStart: function(evt) {
                         evt.item.style.cursor = 'grabbing';
                     },
                     onEnd: function(evt) {
-                        evt.item.style.cursor = 'grab';
+                        evt.item.style.cursor = '';
                     }
                 });
             }
         })();
     </script>
-
-    <style>
-        .sortable-ghost {
-            opacity: 0.4;
-            background: #fff3e6;
-        }
-    </style>
 </div>
