@@ -1,6 +1,6 @@
 baseURL = "https://horeca-os.website.yandexcloud.net/"
 languageCode = "ru-RU"
-title = "Мой новый сайт"
+title = "Сельский Дом OS"
 
 [permalinks]
   posts = "/posts/:slug/"
